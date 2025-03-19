@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalendarz wizyt</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      .calendar {
+        display: inline-block;
+        margin: 20px;
+      }
+      .month {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .weekdays,
+      .days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+      }
+      .day {
+        padding: 10px;
+        border: 1px solid #ccc;
+        position: relative;
+      }
+      .today {
+        background-color: yellow;
+      }
+      .event {
+        background-color: red;
+        color: white;
+        cursor: pointer;
+      }
+      .tooltip {
+        display: none;
+        position: absolute;
+        background-color: black;
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+        top: -90px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
+      .tooltip {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 8px;
+        border-radius: 5px;
+        font-size: 20px;
+        white-space: nowrap;
+        z-index: 9999; /* Bardzo wysoki priorytet */
+        display: none; /* Ukryty domyślnie */
+      }
+
+      .event:hover .tooltip {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Kalendarz wizyt</h1>
+    <div id="calendar"></div>
+
+    <script>
+      async function fetchEvents() {
+        try {
+          const response = await fetch("fetch_events.php");
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error("Błąd podczas pobierania wizyt:", error);
+          return [];
+        }
+      }
+
+      function generateCalendar(container, year, month, events) {
+        const monthNames = [
+          "Styczeń",
+          "Luty",
+          "Marzec",
+          "Kwiecień",
+          "Maj",
+          "Czerwiec",
+          "Lipiec",
+          "Sierpień",
+          "Wrzesień",
+          "Październik",
+          "Listopad",
+          "Grudzień",
+        ];
+        const weekdays = ["Pn", "Wt", "Śr", "Cz", "Pt", "So", "Nd"];
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const today = new Date();
+        let calendarHTML = `<div class='calendar'><div class='month'>${monthNames[month]} ${year}</div>`;
+
+        calendarHTML += `<div class='weekdays'>${weekdays
+          .map((day) => `<div class='day'>${day}</div>`)
+          .join("")}</div>`;
+        calendarHTML += `<div class='days'>`;
+
+        for (let i = 0; i < (firstDay === 0 ? 6 : firstDay - 1); i++) {
+          calendarHTML += "<div class='day'></div>";
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          let className = "day";
+          let tooltip = "";
+          const dateString = `${year}-${(month + 1)
+            .toString()
+            .padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
+          const event = events.find((e) => e.date === dateString);
+
+          if (
+            today.getDate() === day &&
+            today.getMonth() === month &&
+            today.getFullYear() === year
+          ) {
+            className += " today";
+          }
+          if (event) {
+            className += " event";
+            tooltip = `<span class='tooltip'>${event.description}</span>`;
+          }
+
+          calendarHTML += `<div class='${className}'>${day}${tooltip}</div>`;
+        }
+        calendarHTML += "</div></div>";
+        container.innerHTML += calendarHTML;
+      }
+
+      async function loadCalendar() {
+        const events = await fetchEvents();
+        const container = document.getElementById("calendar");
+        const today = new Date();
+        for (let i = 0; i < 3; i++) {
+          generateCalendar(
+            container,
+            today.getFullYear(),
+            today.getMonth() + i,
+            events
+          );
+        }
+      }
+
+      loadCalendar();
+    </script>
+
+<div class="button-container">
+  <button onclick="location.href='index.html'">🏠 Strona Główna</button>
+  <button onclick="location.href='pesel_input.php'">👤 Profil</button>
+  <button onclick="location.href='addcal.html'">➕ Dodaj Wizytę</button>
+  <button onclick="location.href='appointments_list.php'">🗑️ Odwołaj Wizytę</button>
+</div>
+
+  </body>
+</html>

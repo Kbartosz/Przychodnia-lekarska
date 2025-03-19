@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edytuj Profil - Przychodnia</title>
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/edit_profile.css">
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.profile-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+header .logo h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #007bff;
+}
+
+header .logout button {
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+header .logout button:hover {
+    background-color: #e03e3e;
+}
+
+.user-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.user-info h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.personal-info p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.diet-goals, .progress, .edit-profile {
+    margin-bottom: 30px;
+}
+
+h3 {
+    font-size: 22px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #007bff;
+    border-radius: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-part1, .form-part2{
+    flex-basis: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input, select{
+    width: 50%;
+    margin-bottom: 3%;
+}
+
+.edit-profile{
+    text-align: center;
+}
+
+
+
+
+    
+  </style>
+</head>
+<body>
+    <div class="profile-container">
+        <header>
+            <div class="logo">
+                <h1><a href="/dashboard" style="text-decoration: none;">Przychodnia</a></h1>
+            </div>
+            <div class="logout">
+                <button onclick="window.location.href='/logout'">Wyloguj się</button>
+            </div>
+        </header>
+
+        <section class="edit-profile">
+            <h2>Edytuj Profil</h2>
+
+            <form action="/edit-profile" method="POST">
+                <div class="form-part1">
+                    <label for="username">Hasło:</label>
+                    <input type="password" id="pass" name="pass" >
+    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+    
+                    <label for="name">Imię:</label>
+                    <input type="text" id="name" name="name" >
+    
+                    <label for="lastName">Nazwisko:</label>
+                    <input type="text" id="lastName" name="lastName" >
+                </div>
+                <div class="form-part2">
+                    <label for="age">Wiek:</label>
+                    <input type="number" id="age" name="age">
+    
+                    <label for="height">Pesel</label>
+                    <input type="number" id="pesel" name="pesel" >
+    
+                  
+    
+                    <label for="gender">Płeć:</label>
+                    <select id="gender" name="gender">
+                        <option value="">Wybierz</option>
+                        <option value="Male" >Mężczyzna</option>
+                        <option value="Female" >Kobieta</option>
+                        <option value="Other" >Inne</option>
+                    </select>
+      
+
+                </div>
+                <button type="submit">Zapisz zmiany</button>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

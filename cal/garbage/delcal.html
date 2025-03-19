@@ -1,0 +1,155 @@
+<!-- <!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Odwołaj wizytę</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Odwołaj wizytę</h2>
+
+      <label for="pesel">Podaj PESEL:</label>
+      <input
+        type="text"
+        id="pesel"
+        name="pesel"
+        required
+        pattern="\d{11}"
+        title="PESEL musi składać się z 11 cyfr"
+      />
+      <button onclick="getAppointments()">Pokaż wizyty</button>
+
+      <div id="appointments"></div>
+    </div>
+
+    <script>
+      function getAppointments() {
+        let pesel = document.getElementById("pesel").value;
+
+        if (pesel.length !== 11 || isNaN(pesel)) {
+          alert("❌ PESEL musi składać się z 11 cyfr!");
+          return;
+        }
+
+        fetch("get_appo.php?pesel=" + pesel)
+          .then((response) => response.json())
+          .then((data) => {
+            let appointmentsDiv = document.getElementById("appointments");
+            appointmentsDiv.innerHTML = "";
+
+            if (data.length === 0) {
+              appointmentsDiv.innerHTML = "<p>Brak wizyt do odwołania.</p>";
+              return;
+            }
+
+            data.forEach((appointment) => {
+              let appointmentEl = document.createElement("div");
+              appointmentEl.innerHTML = `
+                            <p>📅 Data: ${appointment.data_wizyty} 🕒 Godzina: ${appointment.godzina} 👨‍⚕️ Lekarz: ${appointment.lekarz}</p>
+                            <button onclick="cancelAppointment(${appointment.id_wizyty})">Odwołaj</button>
+                            <hr>
+                        `;
+              appointmentsDiv.appendChild(appointmentEl);
+            });
+          });
+      }
+
+      function cancelAppointment(id_wizyty) {
+        if (!confirm("Czy na pewno chcesz odwołać tę wizytę?")) return;
+
+        fetch("cancel_appo.php?id_wizyty=" + id_wizyty, {
+          method: "GET",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data.message);
+            getAppointments();
+          });
+      }
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Odwołaj wizytę</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Odwołaj wizytę</h2>
+
+      <label for="pesel">Podaj PESEL:</label>
+      <input
+        type="text"
+        id="pesel"
+        name="pesel"
+        required
+        pattern="\d{11}"
+        title="PESEL musi składać się z 11 cyfr"
+      />
+      <button onclick="getAppointments()">Pokaż wizyty</button>
+
+      <div id="appointments"></div>
+    </div>
+
+    <script>
+      function getAppointments() {
+        let pesel = document.getElementById("pesel").value.trim();
+
+        if (pesel.length !== 11 || isNaN(pesel)) {
+          alert("❌ PESEL musi składać się z 11 cyfr!");
+          return;
+        }
+
+        fetch("get_appointments.php?pesel=" + pesel)
+          .then((response) => response.json())
+          .then((data) => {
+            let appointmentsDiv = document.getElementById("appointments");
+            appointmentsDiv.innerHTML = "";
+
+            if (!data || data.length === 0) {
+              appointmentsDiv.innerHTML = "<p>Brak wizyt do odwołania.</p>";
+              return;
+            }
+
+            data.forEach((appointment) => {
+              let appointmentEl = document.createElement("div");
+              appointmentEl.innerHTML = `
+                            <p>📅 <b>Data:</b> ${appointment.data_wizyty}</p>
+                            <p>🕒 <b>Godzina:</b> ${appointment.godzina}</p>
+                            <p>👨‍⚕️ <b>Lekarz:</b> ${appointment.lekarz}</p>
+                            <button onclick="cancelAppointment(${appointment.id_wizyty})">Odwołaj</button>
+                            <hr>
+                        `;
+              appointmentsDiv.appendChild(appointmentEl);
+            });
+          })
+          .catch((error) => {
+            console.error("Błąd pobierania wizyt:", error);
+            alert("❌ Wystąpił błąd przy pobieraniu wizyt.");
+          });
+      }
+
+      function cancelAppointment(id_wizyty) {
+        if (!confirm("Czy na pewno chcesz odwołać tę wizytę?")) return;
+
+        fetch("cancel_appointment.php?id_wizyty=" + id_wizyty)
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data.message);
+            getAppointments(); // Odśwież listę wizyt po odwołaniu
+          })
+          .catch((error) => {
+            console.error("Błąd przy odwoływaniu wizyty:", error);
+            alert("❌ Nie udało się odwołać wizyty.");
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie i Rejestracja</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+      Sekcja logowania 
+        <div class="form-container login-container">
+            <form action="login.php" method="POST">
+                <h2>Logowanie</h2>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Hasło" required>
+                <button type="submit">Zaloguj się</button>
+                <p class="toggle-form">
+                    Nie masz konta? <a href="#" id="show-register">Zarejestruj się</a>
+                </p>
+            </form>
+        </div>
+
+     Sekcja rejestracji 
+        <div class="form-container register-container hidden">
+            <form action="register.php" method="POST">
+                <h2>Rejestracja</h2>
+                <input type="text" name="name" placeholder="Imię " required>
+              <input type="text" name="Nazwi" placeholder="Nazwisko" required>
+              
+              
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Hasło" required>
+                <input type="password" name="confirm-password" placeholder="Potwierdź hasło" required>
+              <input type="password" name="pesel" placeholder="Pesel" required>
+              <input type="text" name="Wiek" placeholder="Wiek" required>
+              <label for="gender">Płeć:</label>
+              <select id="gender" name="gender" required>
+                  <option value="">Wybierz</option>
+                  <option value="M">Mężczyzna</option>
+                  <option value="K">Kobieta</option>
+                  
+              </select>
+                <button type="submit">Zarejestruj się</button>
+                <p class="toggle-form">
+                    Masz już konto? <a href="#" id="show-login">Zaloguj się</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie i Rejestracja</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sekcja logowania -->
+        <div class="form-container login-container">
+            <form action="login.php" method="POST">
+                <h2>Logowanie</h2>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Hasło" required>
+                <button type="submit">Zaloguj się</button>
+                <p class="toggle-form">
+                    Nie masz konta? <a href="#" id="show-register">Zarejestruj się</a>
+                </p>
+            </form>
+        </div>
+
+        <!-- Sekcja rejestracji -->
+        <div class="form-container register-container hidden">
+            <form id="register-form" action="register.php" method="POST">
+                <h2>Rejestracja</h2>
+                
+                <input type="text" name="name" placeholder="Imię" required>
+                <input type="text" name="Nazwi" placeholder="Nazwisko" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" id="password" name="password" placeholder="Hasło" required>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Potwierdź hasło" required>
+                <input type="text" id="pesel" name="pesel" placeholder="PESEL" required>
+                <input type="number" id="Wiek" name="Wiek" placeholder="Wiek" required>
+                
+                <label for="gender">Płeć:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Wybierz</option>
+                    <option value="M">Mężczyzna</option>
+                    <option value="K">Kobieta</option>
+                </select>
+                
+                <div id="error-message" style="color: red; margin-top: 10px;"></div>
+                
+                <button type="submit">Zarejestruj się</button>
+                <p class="toggle-form">
+                    Masz już konto? <a href="#" id="show-login">Zaloguj się</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+document.getElementById('show-register').addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector('.login-container').classList.add('hidden');
+    document.querySelector('.register-container').classList.remove('hidden');
+});
+
+document.getElementById('show-login').addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector('.register-container').classList.add('hidden');
+    document.querySelector('.login-container').classList.remove('hidden');
+});
+
+        document.getElementById("register-form").addEventListener("submit", function(event) {
+            let errors = [];
+
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirm-password").value;
+            let pesel = document.getElementById("pesel").value;
+            let age = document.getElementById("Wiek").value;
+            let gender = document.getElementById("gender").value;
+
+            // Walidacja hasła
+            if (password.length < 6) {
+                errors.push("Hasło musi mieć co najmniej 6 znaków.");
+            }
+            if (password !== confirmPassword) {
+                errors.push("Hasła nie pasują do siebie.");
+            }
+
+            // Walidacja PESEL
+            if (!/^\d{11}$/.test(pesel)) {
+                errors.push("PESEL musi składać się z 11 cyfr.");
+            }
+
+            // Walidacja wieku
+            if (age <= 0 || age > 150) {
+                errors.push("Wiek jest nieprawidłowy.");
+            }
+
+            // Sprawdzenie wyboru płci
+            if (gender === "") {
+                errors.push("Musisz wybrać płeć.");
+            }
+
+            // Jeśli są błędy, anuluj wysłanie formularza i wyświetl komunikaty
+            if (errors.length > 0) {
+                event.preventDefault();
+                document.getElementById("error-message").innerHTML = errors.join("<br>");
+            }
+        });
+    </script>
+</body>
+</html>

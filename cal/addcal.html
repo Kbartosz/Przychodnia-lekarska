@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dodawanie wizyty</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style> body {
+
+      margin: 0;
+
+      padding: 0;
+
+      height: 100vh;
+
+  }
+
+  .button {
+
+      background-color: blue; /* Button color */
+
+      color: white; /* Text color */
+
+      border: none; /* No border */
+
+      padding: 10px 20px; /* Padding around the text */
+
+      text-align: center; /* Center text */
+
+      text-decoration: none; /* No underline */
+
+      display: inline-block; /* Allows setting width and height */
+
+      font-size: 16px; /* Font size */
+
+      cursor: pointer; /* Pointer cursor on hover */
+
+      border-radius: 5px; /* Rounded corners */
+      position: absolute;
+      top: 5px;
+      left: 5px;
+
+  }</style>
+  </head>
+  <body>
+    <a href="cal.html" class="button">kalendarz</a>
+    <div class="container">
+      <h2>Dodaj wizytę</h2>
+      <form action="add_appointment.php" method="POST">
+        <label for="date">Wybierz datę wizyty:</label>
+        <input type="date" id="date" name="date" required />
+
+        <label for="hour">Wybierz godzinę wizyty:</label>
+        <select id="hour" name="hour" required>
+          <option value="12:00">12:00</option>
+          <option value="14:00">14:00</option>
+          <option value="16:00">16:00</option>
+          <option value="18:00">18:00</option>
+          <option value="20:00">20:00</option>
+        </select>
+
+        <label for="lek">Wybierz lekarza:</label>
+        <select id="lek" name="lek" required>
+          <option value="1">Dr. Kowalski</option>
+          <option value="2">Dr. Nowak</option>
+          <option value="3">Dr. Wiśniewska</option>
+        </select>
+
+        <label for="pesel">PESEL pacjenta:</label>
+        <input
+          type="text"
+          id="pesel"
+          name="pesel"
+          required
+          pattern="\d{11}"
+          title="PESEL musi składać się z 11 cyfr"
+        />
+
+        <button type="submit">Dodaj wizytę</button>
+      </form>
+    </div>
+
+    <script>
+      document.getElementById("date").addEventListener("change", function () {
+        let selectedDate = new Date(this.value);
+        let today = new Date();
+
+        if (selectedDate < today) {
+          alert("Nie można wybrać przeszłej daty!");
+          this.value = "";
+        }
+      });
+    </script>
+  </body>
+</html>

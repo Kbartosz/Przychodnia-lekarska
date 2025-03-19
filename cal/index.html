@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przychodnia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
+          rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+<!--  <script src="https://cdn.tailwindcss.com"></script> -->
+    <style>
+        header {
+            background: linear-gradient(to bottom right, #4A90E2, #56CCF2);
+        }
+
+        .btn-primary {
+            background-color: #4A90E2;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #357ABD;
+        }
+
+        .carousel img {
+            max-height: 600px;
+            object-fit: cover;
+            
+        }
+
+        footer {
+            background-color: #333;
+        }
+
+        .col{
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #slider{
+           height: 60vh;
+           width: 6000px;
+          margin-bottom:50px;
+        }
+        #login{
+            height: 50vh;
+        }
+        .icon-section .card {
+            border: none;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            height: 100%; /* Ensures cards are equal height */
+            transition: transform 0.2s;
+        }
+
+        .icon-section .card:hover {
+            transform: scale(1.05);
+        }
+
+        .icon-section .card img {
+            width: 50px;
+            margin-bottom: 10px;
+        }
+
+        /* Hero Section Styling */
+        .hero-section {
+            background-image: url('https://izp.wnz.cm.uj.edu.pl/cm/uploads/2019/03/Lekarze1.jpeg');
+                        background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+      
+      #napis {
+height: 40vh;   /*  80% of the viewport height */
+    width: 100%; /* Full width of the parent container */
+} 
+
+        .search-bar {
+            margin-top: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+      
+      .text-center{
+        margin-bottom: 10px;
+      }
+    </style>
+    <script>
+        // Function to update the fishing days output
+        function updateFishingDaysOutput() {
+            const rangeInput = document.getElementById('fishingDaysRange');
+            const output = document.getElementById('fishingDaysOutput');
+            output.innerText = `Fishing Days: ${rangeInput.value}`;
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+        <div class="container">
+            <img src="main_logo.svg" style="width: 40px; height: auto;" class="rounded-circle me-2" alt="ryba">
+            <a class="navbar-brand" href="#">Przychodnia</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="about.html">O nas</a></li>
+<!--                    <li class="nav-item"><a class="nav-link" href="#locations"></a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="pesel_input.php">Profil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#Wyloguj">Wyloguj</a></li>
+
+<!--                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button"
+                            data-bs-toggle="dropdown">Więcej</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Członkostwo</a></li>
+                            <li><a class="dropdown-item" href="#">Wydarzenia</a></li>
+                        </ul>
+                    </li> -->
+                </ul>
+                <form class="d-flex ms-lg-3">
+                    <input class="form-control me-2" type="search" placeholder="Search">
+                    <button class="btn btn-outline-light" type="submit">Szukaj</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="text-white text-center py-5">
+        <div class="container">
+            <h1>Witamy na stronie Przychodni</h1>
+<!--           <h2>Zadbaj o swoje przyszłe zdrowie już dziś. Pomożemy.</h2> -->
+            <!-- <p class="lead">Join our community of fishing enthusiasts!</p> -->
+            <!-- <div class="mt-4">
+                <input type="range" class="form-range w-50 mx-auto" id="fishingDaysRange" min="1" max="30" value="15"
+                    oninput="updateFishingDaysOutput()">
+                <p id="fishingDaysOutput" class="fw-bold mt-2">Fishing Days: 15</p>
+                <a href="#membership" class="btn btn-light btn-lg shadow">Become a Member</a>
+
+            </div> -->
+        </div>
+    </header>
+
+    <!-- Highlights Section -->
+<!--     <section id="imageSlider" class="py-5 bg-light">
+        <div class="container" id="slider">
+          <h2 class="text-center">Fishing Highlights</h2> 
+            <div id="fishingCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="pzw.jpg" class="d-block w-100 rounded shadow" alt="Fishing Scene 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="pzw2.jpg" class="d-block w-100 rounded shadow" alt="Fishing Scene 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="pzw3.jpg" class="d-block w-100 rounded shadow" alt="Fishing Scene 3">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#fishingCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#fishingCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section> -->
+
+ <div id="napis" class="d-flex align-items-center justify-content-center bg-white ">
+    <div class="text-center">
+        <h1 class="display-4 font-weight-bold text-success mb-4">Zadbaj o swoje przyszłe zdrowie już dziś. Pomożemy.</h1>
+        <p class="h5 text-dark mb-2">Umów się na wizytę. Twoje zdrowie w rękach specjalistów.</p>
+        <p class="h5 text-dark mb-4">Zapraszamy: <a href="#" class="text-success">Zabrze, ul. Reymonta 42</a></p>
+        <div class="mb-4">
+            <button class="btn btn-success px-4 py-2">Poznaj nas</button>
+            <span class="text-muted ml-3">umów się na wizytę poniżej lub zadzwoń</span>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="text-success mr-5">
+                <p>rejestracja ogólna</p>
+                <p class="d-flex align-items-center"><i class="fas fa-phone-alt mr-2"></i>32 271 27 45</p>
+            </div>
+            <div class="text-success">
+                <p>pracownia endoskopii</p>
+                <p class="d-flex align-items-center"><i class="fas fa-phone-alt mr-2"></i>32 370 27 12</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>
+  
+<section>
+<!-- 
+    <div class="container mt-5 icon-section">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/50" alt="Membership Icon">
+                    <div class="card-body">
+                        <h5 class="card-title">Składki członkowskie</h5>
+                        <p class="card-text">Zapoznaj się z opłatami członkowskimi i ich zasadami.</p>
+                        <button class="btn btn-primary">Dowiedz się więcej</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/50" alt="Fishing License Icon">
+                    <div class="card-body">
+                        <h5 class="card-title">Zezwolenia na wędkowanie</h5>
+                        <p class="card-text">Uzyskaj pozwolenie na wędkowanie w wybranych łowiskach.</p>
+                        <button class="btn btn-primary">Dowiedz się więcej</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/50" alt="Tournaments Icon">
+                    <div class="card-body">
+                        <h5 class="card-title">Wędkarskie zawody sportowe</h5>
+                        <p class="card-text">Weź udział w zawodach organizowanych przez PZW.</p>
+                        <button class="btn btn-primary">Dowiedz się więcej</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/50" alt="Join Icon">
+                    <div class="card-body">
+                        <h5 class="card-title">Zostań członkiem PZW</h5>
+                        <p class="card-text">Dołącz do społeczności wędkarzy i korzystaj z przywilejów.</p>
+                        <button class="btn btn-primary">Dowiedz się więcej</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+   
+    <div class="hero-section mt-5">
+        <div class="container">
+<!--             <h1>Znajdź łowisko</h1>
+            <p class="mt-3">
+                Wyszukaj Okręg lub Koło PZW korzystając z wyszukiwarki wpisując jego nazwę lub miejscowość.<br>
+                Możesz również wyświetlić listę Okręgów i Kół z konkretnego województwa lub miasta.
+            </p>
+            <button class="btn btn-primary mt-3 mb-4">Znajdź Okręg lub Koło PZW</button> -->
+            
+          
+<!--             <div class="search-bar">
+                <form class="row g-3">
+                    <div class="col-md-4">
+                        <label for="lowisko" class="form-label">Łowisko</label>
+                        <input type="text" class="form-control" id="lowisko" placeholder="Wpisz nazwę lub miejscowość">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="wojewodztwo" class="form-label">Województwo</label>
+                        <select id="wojewodztwo" class="form-select">
+                            <option selected>Wybierz województwo</option>
+                            <option>Dolnośląskie</option>
+                            <option>Małopolskie</option>
+                          
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="miasto" class="form-label">Miasto</label>
+                        <select id="miasto" class="form-select">
+                            <option selected>Wybierz miasto</option>
+                            <option>Warszawa</option>
+                            <option>Gdańsk</option>
+                            
+                        </select>
+                    </div> -->
+
+
+
+          
+          <!-- Login Section -->
+<section id="login" class="py-5 d-flex justify-content-center">
+    <!-- <div class="container" style="max-width: 400px;">
+        <h2 class="text-center mb-4">e-rejetsracja</h2>
+        <form>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Wprowadź email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Hasło</label>
+                <input type="password" class="form-control" id="password" placeholder="Wprowadź hasło" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Zaloguj się</button>
+            </div>
+        </form>
+    </div> -->
+</section>
+
+
+
+
+
+
+<!--                     <div class="col-12 text-end">
+                        <button type="submit" class="btn btn-primary">Wyszukaj</button>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="karty" class="py-5">
+        <h2 class="text-center mb-4">Newsy</h2> 
+        <div class="container" >
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> 
+                <div class="col">
+                    <div class="card" style="width: 18rem; text-align: center;">
+                        <img src="pzw6.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">
+Od września otwieramy poradnię endokynologiczną.
+</h5>
+                            <p class="card-text">W sobotę 16 listopada 2024 roku Prezes Zarządu Głównego Polskiego Związku Wędkarskiego kol. Beata Olejarz oficjalnie otworzyła Festiwal Wędkarstwa i Survivalu.</p>
+                            <!-- <a href="#" class="btn btn-primary">Czytaj wiecej</a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem; text-align: center;">
+                        <img src="pzw4.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Poradnia ginekologiczna</h5>
+                            <p class="card-text">17 września, w godzinach 12:00-17:00 zapraszamy Was na stanowisko Polskiego Związku Wędkarskiego na wielkim pikniku sportowo-rodzinnym na błoniach PGE Narodowego w Warszawie!</p>
+                            <!-- <a href="#" class="btn btn-primary">Czytaj wiecej</a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem; text-align: center;">
+                        <img src="pzw5.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Opieka Koordynowana w POZ </h5>
+                            <p class="card-text">23 listopada 2024 zostały rozegrane drugie Zawody Halowe z cyklu Grand Prix Komisji ds. Młodzieży 2024/2025. Gospodarzem rozgrywek były 2 koła PZW z Rudy Śląskiej koło 86 KWK Śląsk oraz PZW 92 Halemba. 
+                                </p>
+                            <!-- <a href="#" class="btn btn-primary">Czytaj wiecej</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+</section>
+
+
+    <!-- Registration Form -->
+<!--     <section id="membership" class="py-5 bg-light d-flex justify-content-center">
+        <div class="container">
+            <h2 class="text-center mb-4">Zostań członkiem</h2>
+            <form>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder="Imie" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="email" class="form-control" placeholder="Nazwisko" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" placeholder="Hasło" required>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Zarejestruj</button>
+                </div>
+            </form>
+        </div>
+    </section> -->
+    
+
+    <!-- <section id="contact" class="py-5 bg-dark text-white">
+        <div class="container">
+            <h2 class="text-center mb-4">Kontakt</h2>
+            <form>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder="Your Name">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="email" class="form-control" placeholder="Your Email">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Wyśli wia</button>
+                </div>
+            </form>
+        </div>
+    </section> -->
+
+
+    <!-- Footer -->
+    <footer class="text-center text-white py-4">
+        <div class="container">
+<!--             <p>&copy; 2024 PZW. </p> -->
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
