@@ -1,0 +1,61 @@
+zad 
+
+1 wyjasni kluczowe roznicre miedzy scrum a kanban
+
+Scrum:
+- jasno okreslone role
+-praca jest podzielona na iteracje (sprinty)
+- są sztywno ustalone zasady
+-jest szef
+
+
+Kanban:
+- brak jasno okreslonych rol
+- praca odbywa sie ciągiem
+- jest bardzeij giętki czyli można go bardzeij dostosowywać bo nie ma ściśle narzuconych ram
+-Limity WIP
+- nie ma szefa
+
+
+
+2 opisz role   w zespole scrumowym
+
+developer team - jest to zespol developerow czyli osob ktore rozwijaja projekt ( nie tylko poniwaz np testerzy taz naleza do tego zaspolu)
+
+scrum master - jest to osoba pilnujaca aby zasady metodyki scrum byly przestarzegane podczas tworzenia projekt , zarzdza backlogiem
+
+project owner - jest to lacznik miedzy klientem a zespolem developerow rozmawai z klientem o jego potrzebach i przekazuje je temowi w bardziej techniczny sposob pokazuje on rowiez po kazdej iterracji obecny stan projektu
+
+
+3 co to sprint . jego cel i ramy czsowe i kluczowe wydarzrenia
+
+Podczas prowadzenia projektow metoda Scrum bedziemy mieli do czynienia  z sprintami sa to okresy czasu (najcześciej 2 tygodniowe). Caly projekt mozely podzielic na zadania i w czsie sprintow wykonywac po kiklka z tych zadan. Na koncu kazdego sprintu odbywa sie sprint retrospectiv czyli spotkanie na ktorym omawiamy co poszlo zle co poszlo dobrze i co mozna by bylo poprawic.
+Ponadto na poczatku kazdego dnia odbywa sie ktorkie spotkanie tak zwany stand up czyli krotkie najczesciej 15 min spotkanie na ktorym mownmy co teraz robimy ewentualnie co nas blokuje
+
+4 omow glowne zasady i praktyki metodyki kanban  jakie sa korztysci z jej stosowania
+
+glowne zasady i praktyki to:
+unikanie zapasow - jedno zadanie na jedna osoabe na raz
+u nikanie kolejek - zadania nie moga sie blokowac
+unikanie przeciagania - nie zaczynamy nowego zadania dopuki nie skonczylismy poprzedniego
+uunikanie brakow -  nie oddajemy niedokonczonego zadania
+unikanie bezczynnosci - kazdy powienie miec przydzilone zadanie i cos robic 
+unikanie zbednych czynnosci- kazdy powienien robic tylko rzeczy przydatne dla projekt i ktore ma przypisane a nie np( implementowac jakas nowa technologie na przyszlosc bo "może sie przyda")
+unikanie opóznien - kazdy powinien skonczyc zadanie w terminia
+
+bardzo czesto uzywa sie tablicy kanbanowaej na ktorej mamy trzy pola ("do zrobienia","w trakcie","zrobione")
+i za pomoca np kartek na ktorych mamy wypisana zadania .
+obowizazuje takze WIP limit czyli work in prores limit co oznacza ze na nie mozemy dobrac kolejnego zadania jesli z listy do zrobienia jesli nie zwolnilo sie miejsce w tabeli do zrobienia.
+
+
+
+
+5  porownaj i ocen kiedy lepiej zastosowac scruma a kiedy kanbana . konkretne projekty i dalaczego
+
+
+kanbana powinny stosowac mniej liczne zespoly przy malej lub sredniej wielkosci projektow. wynika to z faktu ze przy duzej ilosci zadain i osob moglby zapanowac chaos i zamieszanie ze wzgledu na bardzej dowolny styl kanbana
+
+ponad to mniej zgrane zespoly rownież nie powinny uzywac kanbana ze wzgledu na brak przypisywania do konkretniej osoby . do takich zespolow lepszy bedzie scrum ze wzgledu na mozliwosc przypisywania konkretnego zadania do konkretnej osoby. dzikei temu kazdy wiec co ma robic i nie zapanuje zamieszanie
+
+
+Natomiast scruma powinny uzywac teamy o wiekszej ilości osób , pracujace nad wiekszymi projektami i nie dokonca zgrane zespoly
